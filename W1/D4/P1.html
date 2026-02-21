@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex layout</title>
+    <style>
+        .flex-container{
+            display: flex;
+            background-color: rgb(230, 174, 106);
+            /*flex-start/space-around/ flex-end/ center/space-between*/
+            justify-content:space-evenly;
+            /*vertical-align: center;/flex-start/flex-end*/
+            align-items: center;
+            height: 100px;
+            /*row-reverse/row/column/column-reverse*/
+            flex-direction: column-reverse;
+            flex-wrap: ;/*wrap/nowrap/wrap-reverse*/
+        }
+        .flex-item{
+            background-color: rgb(205, 80, 255);
+            margin: 10px;
+            padding: 20px;
+            width: 100px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Display:flex</h1>
+    <div class="flex-container">
+        <div class="flex-item">Content 1</div>
+        <div class="flex-item">Content 2</div>
+        <div class="flex-item">Content 3</div>
+    </div>
+</body>
+</html>
