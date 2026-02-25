@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>P Chaithanya | Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f6f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #0d6efd;
+            padding: 15px 50px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: white;
+        }
+
+        .profile-img {
+            border-radius: 50%;
+            margin: 20px 0;
+            border: 4px solid #0d6efd;
+        }
+
+        .cta-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 25px;
+            background: #0d6efd;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        section {
+            padding: 50px 80px;
+        }
+
+        h2, h3 {
+            margin-bottom: 20px;
+            color: #0d6efd;
+        }
+
+        .about {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .skills-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .project-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .project-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .project-content a {
+            display: inline-block;
+            margin-top: 10px;
+            color: #0d6efd;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 30px;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        th {
+            background: #0d6efd;
+            color: white;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 500px;
+            margin: auto;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 10px;
+            background: #0d6efd;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #0d6efd;
+            color: white;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <nav>
+        <a href="#home" class="logo">P Chaithanya</a>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section id="home" class="hero">
+    <h1>P Chaithanya</h1>
+    <img src="myphoto.jpeg" alt="Profile Photo" class="profile-img" width="130">
+    <p><strong>Full Stack Developer | MERN Stack | DevOps Enthusiast</strong></p>
+    <p>Computer Science Engineering Graduate from Mandya, Karnataka</p>
+    <a href="#contact" class="cta-button">Contact Me</a>
+</section>
+
+<section id="about">
+    <h2>About Me</h2>
+    <div class="about">
+        <p>
+            A highly motivated Computer Science Engineering graduate seeking an opportunity 
+            to contribute to a dynamic technology team. I have hands-on experience in software 
+            development, AI-based projects, and cloud technologies. Passionate about continuous 
+            learning and building impactful solutions.
+        </p>
+    </div>
+</section>
+
+<section id="skills">
+    <h3>Technical Skills</h3>
+    <div class="skills-grid">
+        <div class="skills-card">
+            <h4>Programming</h4>
+            <p>Java, Python, C</p>
+        </div>
+        <div class="skills-card">
+            <h4>Web Development</h4>
+            <p>ReactJS, NodeJS, ExpressJS, MongoDB</p>
+        </div>
+        <div class="skills-card">
+            <h4>Cloud & DevOps</h4>
+            <p>AWS, Git, CI/CD Basics</p>
+        </div>
+    </div>
+</section>
+
+<section id="projects">
+    <h3>Projects</h3>
+    <div class="project-container">
+        <div class="project-content">
+            <h4>Voice Controlled Car using AI</h4>
+            <p>
+                Developed an AI-based voice recognition system to control car movement 
+                through spoken commands. Integrated microcontroller processing for 
+                real-time navigation.
+            </p>
+        </div>
+
+        <div class="project-content">
+            <h4>Breast Cancer Detection using DenseNet</h4>
+            <p>
+                Built a deep learning model using DenseNet architecture to enhance 
+                breast cancer detection accuracy from medical imaging datasets.
+            </p>
+            <a href="https://github.com/chaithanyapabc/Enhancing-Breast-Cancer-Detection-Through-DenseNet-Based-Deep-Learning" target="_blank">
+                View Project
+            </a>
+        </div>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Additional Work</th>
+                <th>Technology Used</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>AWS Hosting & Deployment</td>
+                <td>MERN Stack, Redis</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<section id="contact">
+    <h3>Contact Me</h3>
+    <form class="contact-form">
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text" placeholder="Enter your name" required>
+        </div>
+
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" placeholder="Enter your email" required>
+        </div>
+
+        <div class="form-group">
+            <label>Opportunity Type</label>
+            <select>
+                <option>Full Time</option>
+                <option>Internship</option>
+                <option>MERN-Web development</option>
+            </select>
+        </div>
+
+        <button type="submit" class="submit-btn">Send Message</button>
+    </form>
+</section>
+
+<footer>
+    © 2026 P Chaithanya | All Rights Reserved
+</footer>
+
+</body>
+</html>
