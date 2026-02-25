@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CSS Assignment</title>
+
+<style>
+/* General */
+body{
+  margin:0;
+  font-family: Arial;
+  min-height:200vh; /* for scrolling */
+}
+
+/* 1. Sticky Navbar */
+.navbar{
+  background:black;
+  color:white;
+  padding:15px;
+  text-align:center;
+  position:sticky;
+  top:0;
+}
+
+.navbar a{
+  color:white;
+  margin:15px;
+  text-decoration:none;
+  transition:0.3s;
+}
+
+/* 6. Navigation transition */
+.navbar a:hover{
+  color:rgb(38, 0, 255);
+}
+
+/* 2. Z-index Example */
+.z-container{
+  position:relative;
+  height:150px;
+  margin:30px;
+}
+
+.box1{
+  width:100px;
+  height:100px;
+  background:red;
+  position:absolute;
+  top:20px;
+  left:20px;
+  z-index:1;
+}
+
+.box2{
+  width:100px;
+  height:100px;
+  background:blue;
+  position:absolute;
+  top:50px;
+  left:50px;
+  z-index:2;
+}
+
+/* 3. Fixed Footer */
+.footer{
+  background:black;
+  color:white;
+  text-align:center;
+  padding:10px;
+  position:fixed;
+  bottom:0;
+  width:100%;
+}
+
+/* 4. Button Hover Animation */
+button{
+  padding:10px 20px;
+  margin:20px;
+  transition:0.3s;
+}
+
+button:hover{
+  background:green;
+  color:white;
+}
+
+/* 5. Bouncing Ball */
+.ball{
+  width:40px;
+  height:40px;
+  background:rgb(0, 60, 255);
+  border-radius:50%;
+  position:relative;
+  animation:bounce 6s infinite alternate;
+}
+
+@keyframes bounce{
+  from{ top:0px; }
+  to{ top:120px; }
+}
+
+/* 7. T-Shape Design using position: relative */
+.t-container{
+  position:relative;
+  width:300px;
+  height:350px;
+  margin:50px auto;
+}
+
+/* Top Orange Bar */
+.top-bar{
+  position:relative;
+  width:100%;
+  height:50px;
+  background:orange;
+  border:5px solid black;
+}
+
+/* Green Body */
+.body{
+  position:relative;
+  width:200px;
+  height:250px;
+  background:#a8e10c;
+  border:5px solid black;
+  margin:0 auto;
+  top:-5px;
+}
+
+/* Yellow Window */
+.yellow-box{
+  position:absolute;
+  width:40px;
+  height:80px;
+  background:yellow;
+  border:4px solid black;
+  top:30px;
+  left:20px;
+}
+
+/* Purple Window */
+.purple-box{
+  position:absolute;
+  width:40px;
+  height:60px;
+  background:purple;
+  border:4px solid black;
+  top:40px;
+  right:20px;
+}
+
+/* Blue Door */
+.blue-box{
+  position:absolute;
+  width:60px;
+  height:100px;
+  background:#3d45b8;
+  border:4px solid black;
+  bottom:0;
+  left:70px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- Sticky Navbar -->
+<div class="navbar">
+  <a href="#">Home</a>
+  <a href="#">About</a>
+  <a href="#">Contact</a>
+</div>
+
+<h2>Z-Index Example</h2>
+<div class="z-container">
+  <div class="box1"></div>
+  <div class="box2"></div>
+</div>
+
+<h2>Button Hover</h2>
+<button>Hover Me</button>
+
+<h2>Bouncing Ball</h2>
+<div class="ball"></div>
+
+<h2>T Shape Design</h2>
+<div class="t-container">
+  <div class="top-bar"></div>
+  <div class="body">
+    <div class="yellow-box"></div>
+    <div class="purple-box"></div>
+    <div class="blue-box"></div>
+  </div>
+</div>
+
+<!-- Fixed Footer -->
+<div class="footer">
+  Fixed Footer Layout
+</div>
+
+</body>
+</html>
