@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS: variable</title>
+
+</head>
+
+<body>
+    <pre id="out"></pre>
+    <button id="runBtn" class="px-3 py-1 text-white rounded mt-2 mb-2 bg-black">
+        Run
+    </button>
+    <script>
+        const out = document.getElementById("out");
+        function print(...args) {
+            //console 
+            console.log(...args);
+            out.textContent += args.join("") + "\n";
+        }
+        function clearOut() {
+            out.textContent = "";
+        }
+        function run() {
+            clearOut();
+            
+            const name = "chaithra";
+            print("name =",name,"typeof=",typeof name);
+            const isLoggedIn = true;
+            print("isLoggedIn =",isLoggedIn,"typeof=",typeof isLoggedIn);
+            const number = 99.99;
+            print("number =",number,"typeof=",typeof number);
+             const number1 = 67;
+            print("number1 =",number1,"typeof=",typeof number1);
+        }
+        document.getElementById("runBtn").addEventListener
+            ("click", run);
+    </script>
+</body>
+
+</html>
