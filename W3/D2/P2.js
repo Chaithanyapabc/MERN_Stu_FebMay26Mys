@@ -1,4 +1,4 @@
-// Comparison Operators
+//Comparison Operators
 
 console.log("Comparison Operators");
 let x = 10, y = 3;
