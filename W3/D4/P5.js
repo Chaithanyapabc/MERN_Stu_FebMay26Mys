@@ -1,4 +1,4 @@
-//Reduce function or method
+//Reduce function or methods
 let nums = [5,10,15];
 
 let total = nums.reduce((a,b) => a+b,0);
