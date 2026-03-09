@@ -12,5 +12,5 @@ function parseConfig(text){
         console.log("Finally block executed.");
     }
 }
-//parseConfig('{"theme":"dark"}');//valid json becoz it has key-value pair in it
+//parseConfig('{"theme":"dark"}');//valid json becoz it has key-value pair in it.
 parseConfig('{json}');//invalid json
