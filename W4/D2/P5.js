@@ -21,6 +21,7 @@ signupForm.addEventListener("submit",function(event){
     }
     //Password validation
     const password = signupPassword.value;
+    
     if(!password){
         message.textContent = "password is required";
         message.style.color = "red";
@@ -64,7 +65,7 @@ signupForm.addEventListener("submit",function(event){
     }
     message.textContent = "Valid email & password entered";
      message.style.color = "green";
-     console.log("Success!",{email,password});
+     console.log("Success!",{email,password:"***Hidden***"});
 });
 //clear message on input
 signupEmail.addEventListener("input",() => message.textContent = "");
