@@ -66,3 +66,6 @@ signupForm.addEventListener("submit",function(event){
      message.style.color = "green";
      console.log("Success!",{email,password});
 });
+//clear message on input
+signupEmail.addEventListener("input",() => message.textContent = "");
+signupPassword.addEventListener("input",() => message.textContent = "");
