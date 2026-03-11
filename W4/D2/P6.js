@@ -2,53 +2,50 @@ const livePassword = document.getElementById("livePassword");
 const message = document.getElementById("message");
 
 livePassword.addEventListener("input",function(){
-    //Password validation
-    const password = livePasswordPassword.value;
+    // Password Validation
+    const password = livePassword.value;
     if(!password){
-        message.textContent = "password is required";
-        message.style.color = "red";
+        message.textContent = "Password is Required!";
+        message.style.color  = "red";
         livePassword.focus();
         return;
     }
-    //check length of password
+    // Check length of the PASSWORD
     if(password.length < 8){
-        message.textContent = "Password must be atleast 8 charecters long";
-        message.style.color = "red";
+        message.textContent = "Password must be atleast 8 characters long.";
+        message.style.color  = "red";
         livePassword.focus();
         return;
     }
-    //check UPPERCASE charecters
+    // Check for UPPERCASE characters
     if(!/[A-Z]/.test(password)){
-        message.textContent = "Password must have atleast 1 UPPERCASE charecter";
-        message.style.color = "red";
+        message.textContent = "Password must have atleast 1 UPPERCASE character.";
+        message.style.color  = "red";
         livePassword.focus();
         return;
     }
-    //lowercase charecter
+    // Check for LOWERCSE characters
     if(!/[a-z]/.test(password)){
-        message.textContent = "Password must have atleast 1 lowercase charecter";
-        message.style.color = "red";
+        message.textContent = "Password must have atleast 1 LOWERCASE character.";
+        message.style.color  = "red";
         livePassword.focus();
         return;
     }
-    //check number
+    // check number 
     if(!/\d/.test(password)){
         message.textContent = "Password must have atleast 1 digit in it.";
-        message.style.color = "red";
+        message.style.color  = "red";
         livePassword.focus();
         return;
     }
-    //check special charecter
+    // check for special characters 
     if(!/[@#$%&*!]/.test(password)){
-        message.textContent = "Password must have atleast 1 spical charecter @#$%&*!";
-        message.style.color = "red";
+        message.textContent = "Password must have atleast 1 special character [!@#$%&*].";
+        message.style.color  = "red";
         livePassword.focus();
         return;
     }
-    message.textContent = "Valid email & password entered";
-     message.style.color = "green";
-     console.log("Success!",{email,password});
+    message.textContent = "Valid Email and password entered!"
+    message.style.color  = "blue";
+    console.log("Success!",{email,password});
 });
-//clear message on input
-signupEmail.addEventListener("input",() => message.textContent = "");
-livePassword.addEventListener("input",() => message.textContent = "");
