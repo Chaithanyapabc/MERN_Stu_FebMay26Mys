@@ -11,8 +11,13 @@ document.getElementById("saveBtn").addEventListener("click",function(){
     jsonOutput.textContent = "user object saved as string to localStorage";
 });
 document.getElementById("readBtn").addEventListener("click",function(){
-    const up = localStorage.getItem("userProfile");
-    console.log(JSON.parse(up));
-    console.log(up);
-    jsonOutput.textContent = "userProfile" + up;
+    try{
+        const up = localStorage.getItem("userProfile");
+        console.log(JSON.parse(up));
+        console.log(up);
+        jsonOutput.textContent = "userProfile" + up;
+    }
+    catch(error){
+        jsonOutput.textContent = "JSON Parsing failed";
+    }
 });
