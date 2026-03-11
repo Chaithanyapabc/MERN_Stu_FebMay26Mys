@@ -5,7 +5,7 @@ const type = document.getElementById("fbtype");
 const feedback = document.getElementById("feedbacks");
 const message = document.getElementById("message");
 const cardContainer = document.getElementById("feedbackCard");
-
+//
 form.addEventListener("submit", function(e) {
     e.preventDefault();
 
