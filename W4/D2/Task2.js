@@ -1,70 +1,75 @@
 const form = document.getElementById("feedbackForm");
-const name = document.getElementById("fbname");
-const email = document.getElementById("fbemail");
-const type = document.getElementById("fbtype");
-const feedback = document.getElementById("feedbacks");
-const message = document.getElementById("message");
-const cardContainer = document.getElementById("feedbackCard");
-//
-form.addEventListener("submit", function(e) {
+const container = document.getElementById("feedbackContainer");
+const countDisplay = document.getElementById("count");
+
+let total = 0;
+
+form.addEventListener("submit", function (e) {
+
     e.preventDefault();
 
-    const nameValue = name.value.trim();
-    const emailValue = email.value.trim();
-    const typeValue = type.value;
-    const feedbackValue = feedback.value.trim();
-    if(!nameValue){
-        message.textContent = "Name is required";
-        message.style.color = "red";
-        name.focus();
-        return;
-    }
-    if (!emailValue) {
-        message.textContent = "Email is required";
-        message.style.color = "red";
-        email.focus();
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const type = document.getElementById("type").value;
+    const feedback = document.getElementById("feedback").value.trim();
+
+    const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+
+    if (name === "" || email === "" || type === "" || feedback === "") {
+        alert("All fields are required");
         return;
     }
 
-    if (!emailValue.includes("@") || !emailValue.includes(".")) {
-        message.textContent = "Please enter valid email id";
-        message.style.color = "red";
-        email.focus();
+    if (!emailPattern.test(email)) {
+        alert("Enter valid email");
         return;
     }
 
-    if (feedbackValue.length < 20) {
-        message.textContent = "Feedback must be atleast 20 characters";
-        message.style.color = "red";
-        feedback.focus();
+    if (feedback.length < 20) {
+        alert("Feedback must be at least 20 characters");
         return;
     }
 
-    message.textContent = "Feedback submitted successfully";
-    message.style.color = "green";
+    let label = "";
 
-    createCard(nameValue, emailValue, typeValue, feedbackValue);
-
-    form.reset();
-});
-
-email.addEventListener("input", () => message.textContent = "");
-feedback.addEventListener("input", () => message.textContent = "");
-
-function createCard(name, email, type, feedback) {
+    if (type === "Bug") {
+        label = "[Needs Review]";
+    }
+    else if (type === "Suggestion") {
+        label = "[Idea]";
+    }
+    else if (type === "Appreciation") {
+        label = "[Positive]";
+    }
 
     const card = document.createElement("div");
 
-    card.style.border = "1px solid black";
-    card.style.padding = "10px";
-    card.style.marginTop = "10px";
-
     card.innerHTML = `
-        <h3>${name}</h3>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Type:</strong> ${type}</p>
-        <p><strong>Feedback:</strong> ${feedback}</p>
-    `;
+<h4>${label}</h4>
+<p><b>Name:</b> <span class="n"></span></p>
+<p><b>Email:</b> <span class="e"></span></p>
+<p><b>Type:</b> <span class="t"></span></p>
+<p><b>Feedback:</b> <span class="f"></span></p>
+<button class="deleteBtn">Delete</button>
+<hr>
+`;
 
-    cardContainer.appendChild(card);
-}
+    card.querySelector(".n").textContent = name;
+    card.querySelector(".e").textContent = email;
+    card.querySelector(".t").textContent = type;
+    card.querySelector(".f").textContent = feedback;
+
+    card.querySelector(".deleteBtn").onclick = function () {
+        card.remove();
+        total--;
+        countDisplay.textContent = total;
+    };
+
+    container.appendChild(card);
+
+    total++;
+    countDisplay.textContent = total;
+
+    form.reset();
+
+});
