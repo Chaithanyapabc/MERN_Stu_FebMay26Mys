@@ -1,4 +1,4 @@
-function renderproject(){
+function filterProject(){
     const projectsContainer=document.getElementById("projects-container");
     if(!projectsContainer){
         console.log("Projects were not found");
