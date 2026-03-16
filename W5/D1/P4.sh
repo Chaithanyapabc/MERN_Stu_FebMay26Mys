@@ -3,4 +3,4 @@ set -e
 
 echo "Checking Node.js istallation"
 mode -v 
-npm-v
+npm -v
