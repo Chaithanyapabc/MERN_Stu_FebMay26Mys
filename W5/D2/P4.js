@@ -1,4 +1,4 @@
-//Writing custom callback functions
+//Writing custom Callback functions
 function processStudent(name,score,callback,monkey){
     console.log("Student name: ",name);
     console.log("Score: ",score);
