@@ -1,7 +1,7 @@
 //Introduction to callback function
 function greetUser(name,callback){
     console.log("Hello,"+name);
-    //The callback function is exicutes only after the current fynction
+    //The callback function is executed only after the current function
     callback();
 }
 function showCompletionMessage(){
