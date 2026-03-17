@@ -1,4 +1,4 @@
-//Callback Nesting
+//Callback nesting
 console.log("Starting nested callback flow");
 
 setTimeout(function(){
