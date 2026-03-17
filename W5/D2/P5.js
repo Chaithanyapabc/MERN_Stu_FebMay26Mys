@@ -1,4 +1,4 @@
-//Callback Error
+//Callback error
 function divideNumbers(a,b,callback){
     if(b==0){
         callback("Cannot divide by zero.",null);
