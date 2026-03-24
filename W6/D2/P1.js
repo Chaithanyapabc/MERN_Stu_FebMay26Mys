@@ -1,4 +1,4 @@
-//Understanding the event loop
+//Understanding the event Loop
 console.log("1. Synchronous task started");
 
 //setTimeout scadules a callback for later.
