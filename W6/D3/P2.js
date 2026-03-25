@@ -6,7 +6,7 @@ const filePath=path.join(__dirname,"sync-note.txt")
 
 //fs.writeFileSync(filePath,"This file was written using writeFileSync().\nSynchronous operation block execution")
 //Append to a file 
-fs.appendFile(filePath," New text added using fs.appendFile.",
+fs.appendFileSync(filePath," New text added using fs.appendFile.",
     function(error){
         if(error){
             console.log("Append Error:",error.message)
