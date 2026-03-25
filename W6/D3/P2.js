@@ -1,19 +1,25 @@
-//Reading & writing files synchronously
+//Reading and writing file synchronously
+const fs=require("fs")
+const path= require("path")
 
-const fs = require("fs");
-const path = require("path");
-//__dirname is the current node directory
-const filePath = path.join(__dirname,"sync-note.txt");
+const filePath=path.join(__dirname,"sync-note.txt")
 
-//Syntax for function usage in madule
-//moduleName.functionName()
+//fs.writeFileSync(filePath,"This file was written using writeFileSync().\nSynchronous operation block execution")
+//Append to a file 
+fs.appendFile(filePath," New text added using fs.appendFile.",
+    function(error){
+        if(error){
+            console.log("Append Error:",error.message)
+            return
+        }
+        console.log("File content Appended:")
+    }
+)
 
-//write operating function in synchronous way 
-fs.writeFileSync(filePath,"This file was written using writeFileSync().\nSynchronous operation block execution");
+console.log("file written synchronously.")
 
-console.log("File written synchronously.");
+//for read operation
+const content = fs.readFileSync(filePath,"utf-8")
 
-const content = fs.readFileSync(filePath,"utf-8");
-
-console.log("File read synchronously.");
-console.log(content);
+console.log("File read synchronously.")
+console.log("File Content:\n",content)
