@@ -1,0 +1,72 @@
+.dark-mode{
+    background-color: black;
+    color: white;
+}
+.dark-mode nav{
+    background-color: rgb(110, 97, 97);
+    color: white;
+}
+.dark-mode section{
+    background-color: rgb(116, 100, 100);
+    color: white;
+}
+.dark-mode .bg-blue-100{
+    background-color: black;
+    color: white;
+}
+.dark-mode .bg-white{
+    background-color: rgb(24, 17, 43);
+}
+.dark-mode .text-gray-700{
+    color: white;
+}
+#progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    width: 0%;
+    background: linear-gradient(90deg, #3b82f6, #06b6d4);
+    z-index: 9999;
+    transition: width 0.2s ease-out;
+}
+nav a.active {
+    color: #2563eb;
+    font-weight: bold;
+    border-bottom: 2px solid #2563eb;
+}
+#backToTop {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    padding: 12px 16px;
+    font-size: 18px;
+    border: none;
+    border-radius: 50%;
+    background: #2563eb;
+    color: white;
+    cursor: pointer;
+    display: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+#backToTop:hover {
+    background: #1e40af;
+    transform: scale(1.1);
+}
+
+.filter-btn {
+  padding: 8px 12px;
+  margin-right: 5px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  border-radius: 6px;
+  background: #f3f4f6;
+}
+
+.filter-btn.active {
+  background: #2563eb;
+  color: white;
+  border-color: #2563eb;
+}
