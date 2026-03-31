@@ -1,19 +1,25 @@
-//Handling different HTTP methods in express
+// Handling different HTTP methods in express
+const express=require("express");
+const { message } = require("statuses");
 
-const express = require("express");
+const app=express();
 
-const app = express();
-
+//To read
 app.get("/users",function(req,res){
-    res.send("Returning all Users");
+    res.status(200).json([{message:"Success"},
+        {id:1,name:"Kavya"},
+        {id:2,name:"Bipin"},
+        {id:3,name:"Keerthi"},
+    ]);
+    res.send("Returning all users");
 });
 
-//To create 
+//To create
 app.post("/users",function(req,res){
-    //res.status() sets the HTTP status code of the response body
-    res.status(201).send("User created.");
+    // res.status() sets the HTTP status code before sending the response
+    res.status(201).send("User created.")
 });
-//curl -X POST http://localhost:4000/users
+
 app.listen(4000,function(){
-    console.log("Express server is running at http://localhost:4000");
+    console.log("Express server running at http://localhost:4000");
 });
