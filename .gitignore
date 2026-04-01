@@ -30,3 +30,6 @@ Thumbs.db
 
 # Testing
 /coverage/
+
+package-lock.json
+package.json
