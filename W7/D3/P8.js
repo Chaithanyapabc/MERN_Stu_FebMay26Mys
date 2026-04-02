@@ -94,7 +94,7 @@ app.post("/refresh",function(req,res){
             email:decoded.email,
             role:"member"
         },secretKey,{
-            expiresIn:"10d",//d:days m:min h:hour
+            expiresIn:"10m",//d:days m:min h:hour
             algorithm:"HS256",
             issuer:"jwt-example"
         });
@@ -122,3 +122,5 @@ app.listen(4000,function(){
     console.log("JWT demo server running @ http://localhost:4000");
 });
 //curl -X POST http://localhost:4000/login -H "Content-Type: application/json" -d "{\"email\":\"email@email.com\",\"password\":\"pass@123\"}"
+//curl -X POST http://localhost:4000/refresh -H "Content-Type: application/json" -d "{\"refreshToken\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwiZW1haWwiOiJlbWFpbEBlbWFpbC5jb20iLCJpYXQiOjE3NzUxMTA5NzUsImV4cCI6MTc3NTk3NDk3NSwiaXNzIjoiand0LWV4YW1wbGUifQ.3dVf91zzjiebRSih-luME9HKgzfqsyCi5oC_7cktiRE\"}"
+//curl http://localhost:4000/me -H "Authorisation:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMSwiZW1haWwiOiJlbWFpbEBlbWFpbC5jb20iLCJyb2xlIjoibWVtYmVyIiwiaWF0IjoxNzc1MTEyMzQ2LCJleHAiOjE3NzU5NzYzNDYsImlzcyI6Imp3dC1leGFtcGxlIn0.oPuxP7g2EeK9tdTUsr0CSGgarmhiEyxNaji8JXlhhKs"  
