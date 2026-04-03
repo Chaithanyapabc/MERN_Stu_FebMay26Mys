@@ -13,7 +13,7 @@ const refreshSecretKey = "MyNewsecretekey";
 const refreshTokens = [];
 //authenticate access token
 function authentiacateAccessToken(req,res,next){
-    const authHeader = req.headers.authorisation;
+    const authHeader = req.headers.authorization;
     
     const token = authHeader && authHeader.split(" ")[1];
     if (!token) {
@@ -45,6 +45,8 @@ function authentiacateAccessToken(req,res,next){
 
 //Post function used login
 app.post("/login",function(req,res){
+    console.log("rf",refreshTokens);
+    
     const {email,password} = req.body;
     if(email!=="email@email.com" || password!=="pass@123"){
         return res.status(401).json({
@@ -68,6 +70,8 @@ app.post("/login",function(req,res){
         issuer:"jwt-example"
     });
     refreshTokens.push(refreshToken);
+    console.log("after rf",refreshTokens,refreshToken);
+    
     res.json({
         success:true,
         message:"login successful",
@@ -78,6 +82,8 @@ app.post("/login",function(req,res){
 
 app.post("/refresh",function(req,res){
     const {refreshToken} = req.body;
+    console.log(req.body,refreshTokens);
+    
     if(!refreshToken || !refreshTokens.includes(refreshToken)){
         return res.status(401).json({
             success:false,
