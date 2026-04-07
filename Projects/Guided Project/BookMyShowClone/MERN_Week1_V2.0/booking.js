@@ -1,6 +1,6 @@
 // Handles booking related operations
 const bookingEmitter = require("./events");
-
+const {appendBookingAsync,appendLogAsync} = require("./fileManager");
 let currentBooking = null;
 
 function getCurrentBooking(){
@@ -73,8 +73,12 @@ function processBooking(movie,showtime,seatCount){
                 bookingEmitter.emit("bookingValidated");
                 return checkSeatsAvailability(showtime,seatCount);
             })
+
             .then(()=>generateBookingDetails(movie,showtime,seatCount))
             .then((booking)=>confirmBooking(booking,showtime))
+            .then((confirmedBooking)=>{
+                return saveBokingToFile(confirmedBooking);
+            })
             .catch((error)=>{
                 bookingEmitter.emit("bookingfailed",error);
                 throw error;
@@ -94,6 +98,8 @@ async function processBookingAsync(movie,showtime,seatCount){
         const booking = await generateBookingDetails(movie,showtime,seatCount);
 
         const confirmedBooking = await confirmBooking(booking,showtime);
+
+        await saveBokingToFile(confirmedBooking);
         
         return confirmedBooking;
     }
@@ -102,6 +108,18 @@ async function processBookingAsync(movie,showtime,seatCount){
         throw error;
     }
 }
+
+async function saveBokingToFile(booking){
+    await appendBookingAsync(booking);
+    await appendLogAsync(`Booking saved: ${booking.bookingId} for movie ${booking.movieTitle}`);
+
+    bookingEmitter.emit("bookingSaved",booking);
+    return booking;
+}
+
+//function processBooking()
+
+
 
 module.exports = {
     getCurrentBooking,
