@@ -144,5 +144,6 @@ module.exports = {
     writeFileSync,
     appenBookingAsync,
     renameLogFileSync,
-    deleteArchivedLogSync
+    deleteArchivedLogSync,
+    appendLogAsync
 };
