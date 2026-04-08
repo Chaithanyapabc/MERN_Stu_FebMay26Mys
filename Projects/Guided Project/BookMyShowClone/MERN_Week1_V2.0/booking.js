@@ -73,12 +73,9 @@ function processBooking(movie,showtime,seatCount){
                 bookingEmitter.emit("bookingValidated");
                 return checkSeatsAvailability(showtime,seatCount);
             })
-
             .then(()=>generateBookingDetails(movie,showtime,seatCount))
             .then((booking)=>confirmBooking(booking,showtime))
-            .then((confirmedBooking)=>{
-                return saveBokingToFile(confirmedBooking);
-            })
+            .then((confirmedBooking)=>saveBookingToFile(confirmedBooking))
             .catch((error)=>{
                 bookingEmitter.emit("bookingfailed",error);
                 throw error;
@@ -99,7 +96,7 @@ async function processBookingAsync(movie,showtime,seatCount){
 
         const confirmedBooking = await confirmBooking(booking,showtime);
 
-        await saveBokingToFile(confirmedBooking);
+        await saveBookingToFile(confirmedBooking);
         
         return confirmedBooking;
     }
@@ -109,17 +106,15 @@ async function processBookingAsync(movie,showtime,seatCount){
     }
 }
 
-async function saveBokingToFile(booking){
+async function saveBookingToFile(booking){
     await appendBookingAsync(booking);
-    await appendLogAsync(`Booking saved: ${booking.bookingId} for movie ${booking.movieTitle}`);
+    await appendLogAsync(`Booking saved: ${booking.bookingId} for ${booking.movieTitle}`);
 
-    bookingEmitter.emit("bookingSaved",booking);
+    bookingEmitter.emit("bookingSaved.",booking);
     return booking;
 }
 
-//function processBooking()
-
-
+// function processBooking()
 
 module.exports = {
     getCurrentBooking,
