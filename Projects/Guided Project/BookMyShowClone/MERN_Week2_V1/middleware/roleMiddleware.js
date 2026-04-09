@@ -1,5 +1,5 @@
 //Checks the permission for the request and allows it or rejects it
-const CustomError = require("../utils/CustomError");
+const CustomError = require("../utils/customError");
 
 function roleMiddleware(...allowedRoles){
     return (req,res,next)=>{
