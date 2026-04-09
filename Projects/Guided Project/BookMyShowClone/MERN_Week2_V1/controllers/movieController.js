@@ -1,5 +1,5 @@
 //function for movie handling are created
-const movies = require("/data/mmovies");
+const movies = require("/data/movies");
 const customError = require("../utils/customError");
 
 function getHome(req, res) {
