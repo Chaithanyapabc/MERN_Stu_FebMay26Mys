@@ -9,7 +9,7 @@ const { JWT_SECRET } = require("../middleware/authMiddleware");
 
 function loginUser(req, res, next) {
     try {
-        const { email, password } = res.body;
+        const { email, password } = req.body;
 
         if (!email || !password) {
             return next(new CustomError("email/password are required", 400));
