@@ -9,7 +9,7 @@ function getHome(req,res){
     })
 }
 
-function getAllMovies(res,res){
+function getAllMovies(req,res){
     const {language,genre,city}=req.query
     let filteredMovies=movies;
     if(language){
