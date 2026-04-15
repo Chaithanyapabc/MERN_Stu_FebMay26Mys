@@ -1,14 +1,12 @@
-function validateInput(input, callback, attempts = 0) {
-    if (attempts >= 3) {
-        return callback("Max attempts reached");
-    }
-
+//input validation 
+function validateInput(input, callback, attempts = 1) {
     if (!input || input.trim() === "") {
-        console.log("Invalid input, try again");
-        return callback(null, false);
+        if (attempts >= 3) {
+            return callback("Max attempts reached", null);
+        }
+        return callback(null, "retry");
     }
-
-    callback(null, true);
+    callback(null, input);
 }
 
-module.exports = { validateInput };
+module.exports = validateInput;
