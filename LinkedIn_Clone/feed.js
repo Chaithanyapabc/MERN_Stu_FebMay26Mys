@@ -1,13 +1,15 @@
-const store = require("./store");
+//Aggregates posts from connected users
+const { getCurrentUser } = require("./user");
+const { getAllPosts } = require("./posts");
 
 async function viewFeed() {
-    const user = store.currentUser;
+    const user = getCurrentUser();
 
-    const feed = store.posts
-        .filter(post => user.connections.includes(post.authorId))
-        .sort((a, b) => b.timestamp - a.timestamp);
+    const posts = getAllPosts().filter(p =>
+        user.connections.includes(p.authorId)
+    );
 
-    return feed;
+    return posts.sort((a, b) => b.time - a.time);
 }
 
 module.exports = { viewFeed };
