@@ -1,27 +1,41 @@
-const store = require("./store");
-const eventEmitter = require("./events");
+//Handles post creation, feed generation, likes, and comments
+const { getCurrentUser } = require("./user");
+
+let posts = [];
 
 async function createPost(content) {
-    try {
-        if (!store.currentUser) throw "Login required";
+    const user = getCurrentUser();
 
-        const post = {
-            id: Date.now(),
-            authorId: store.currentUser.id,
-            content,
-            timestamp: new Date(),
-            likes: [],
-            comments: []
-        };
+    if (!user) throw "No active user";
 
-        store.posts.push(post);
+    const post = {
+        id: Date.now().toString(),
+        authorId: user.id,
+        content,
+        likes: [],
+        comments: [],
+        time: new Date()
+    };
 
-        eventEmitter.emit("postCreated");
-        return post;
-
-    } catch (error) {
-        eventEmitter.emit("operationFailed", error);
-    }
+    posts.push(post);
+    return post;
 }
 
-module.exports = { createPost };
+function likePost(postId) {
+    const user = getCurrentUser();
+    const post = posts.find(p => p.id === postId);
+
+    if (!post) throw "Post not found";
+
+    post.likes.push(user.id);
+}
+
+function getAllPosts() {
+    return posts;
+}
+
+module.exports = {
+    createPost,
+    likePost,
+    getAllPosts
+};
