@@ -1,60 +1,77 @@
-//To Handles sending, receiving, accepting, and rejecting connection requests
-const { getCurrentUser, getAllUsers } = require("./user");
+const store = require("./user");
 
-let requests = [];
 
-function sendRequest(targetId) {
-    return new Promise((resolve, reject) => {
-        const sender = getCurrentUser();
-        const target = getAllUsers().find(u => u.id === targetId);
+// View Other Profiles (exclude current user)
+function viewOtherProfiles() {
 
-        if (!target) return reject("User not found");
-        if (target.id === sender.id) return reject("Cannot connect yourself");
+    if (!store.currentUser) {
+        events.emit("operationFailed", "Login required");
+        return [];
+    }
 
-        const already = requests.find(r =>
-            r.senderId === sender.id && r.receiverId === targetId
-        );
+    return store.users
+        .filter(u => u.id !== store.currentUser.id)
+        .map(u => ({
+            id: u.id,
+            name: u.name,
+            headline: u.headline
+        }));
+}
 
-        if (already) return reject("Request already sent");
 
-        const request = {
-            senderId: sender.id,
-            receiverId: targetId,
-            status: "pending",
-            time: new Date()
-        };
+// Send Connection Request
+function sendRequest(receiverId) {
 
-        requests.push(request);
-        resolve(request);
+    if (!store.currentUser) {
+        events.emit("operationFailed", "Login required");
+        return;
+    }
+
+    const receiver = store.users.find(u => u.id == receiverId);
+
+    if (!receiver) {
+        events.emit("operationFailed", "User not found");
+        return;
+    }
+
+    if (receiver.id === store.currentUser.id) {
+        events.emit("operationFailed", "Cannot connect to yourself");
+        return;
+    }
+
+    store.connectionRequests.push({
+        senderId: store.currentUser.id,
+        receiverId: receiver.id,
+        status: "pending"
     });
+
+    events.emit("connectionRequested");
 }
 
-function getRequests() {
-    const user = getCurrentUser();
-    return requests.filter(r => r.receiverId === user.id);
+
+// View Connection Requests (with names)
+function viewRequests() {
+
+    if (!store.currentUser) {
+        events.emit("operationFailed", "Login required");
+        return [];
+    }
+
+    return store.connectionRequests
+        .filter(r => r.receiverId === store.currentUser.id)
+        .map(r => {
+            const sender = store.users.find(u => u.id === r.senderId);
+
+            return {
+                senderId: r.senderId,
+                senderName: sender ? sender.name : "Unknown",
+                status: r.status
+            };
+        });
 }
 
-async function acceptRequest(senderId) {
-    const user = getCurrentUser();
-    const req = requests.find(r =>
-        r.senderId === senderId && r.receiverId === user.id
-    );
-
-    if (!req) throw "Request not found";
-
-    req.status = "accepted";
-
-    const users = getAllUsers();
-    const sender = users.find(u => u.id === senderId);
-
-    user.connections.push(senderId);
-    sender.connections.push(user.id);
-
-    return req;
-}
-
-module.exports = {
+module.exports ={
+    viewOtherProfiles,
     sendRequest,
-    getRequests,
-    acceptRequest
-};
+    viewRequests
+}
