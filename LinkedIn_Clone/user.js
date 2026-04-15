@@ -1,17 +1,11 @@
-const store = require("./store");
-const eventEmitter = require("./events");
+//Handles user profile creation, updates
+let users = [];
+let currentUser = null;
 
 function createProfile(name, headline) {
-    return new Promise((resolve, reject) => {
-        const existing = store.users.find(u => u.name === name);
-
-        if (existing) {
-            eventEmitter.emit("operationFailed", "User already exists");
-            return reject("Duplicate user");
-        }
-
+    return new Promise((resolve) => {
         const user = {
-            id: Date.now(),
+            id: Date.now().toString(),
             name,
             headline,
             skills: [],
@@ -19,13 +13,27 @@ function createProfile(name, headline) {
             education: [],
             connections: []
         };
-
-        store.users.push(user);
-        store.currentUser = user;
-
-        eventEmitter.emit("profileCreated", user);
+        users.push(user);
+        currentUser = user;
         resolve(user);
     });
 }
 
-module.exports = { createProfile };
+function getCurrentUser() {
+    return currentUser;
+}
+
+function getAllUsers() {
+    return users;
+}
+
+function setCurrentUser(user) {
+    currentUser = user;
+}
+
+module.exports = {
+    createProfile,
+    getCurrentUser,
+    getAllUsers,
+    setCurrentUser
+};
