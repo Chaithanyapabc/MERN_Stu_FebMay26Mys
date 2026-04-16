@@ -21,10 +21,12 @@ emitter.on("connectionRejected", () => {
     console.log(chalk.yellow("Connection rejected"));
 });
 const { createProfile, login, updateProfile, getCurrentUser } = require("./user");
+const validateInput = require("./validator");
 const { addSkill } = require("./profile");
 const { viewOtherProfiles, sendRequest, viewRequests, respondToRequest, viewConnections } = require("./connections");
 const { createPost, likePost, commentOnPost } = require("./posts");
 const { viewFeed } = require("./feed");
+
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -71,17 +73,33 @@ function menu() {
                     break;
 
                 case "2":
-                    rl.question("Username: ", (username) => {
-                        rl.question("Password: ", async (password) => {
-                            try {
-                                await login(username, password);
-                                utils.success("Login successful");
-                            } catch (err) {
-                                utils.error(err);
-                            }
-                            menu();
+                    let attempts = 0;
+
+                    function askLogin() {
+                        rl.question("Username: ", (username) => {
+                            rl.question("Password: ", async (password) => {
+                                try {
+                                    await login(username, password);
+                                    utils.success("Login successful");
+                                    return menu();
+                                } catch (err) {
+                                    const result = validateInput(attempts);
+
+                                    if (result.error) {
+                                        utils.error(result.error);
+                                        return menu();
+                                    }
+
+                                    attempts = result.attempts;
+                                    utils.error("Invalid login credentials");
+
+                                    return askLogin(); // retry
+                                }
+                            });
                         });
-                    });
+                    }
+
+                    askLogin();
                     break;
 
                 case "3":
