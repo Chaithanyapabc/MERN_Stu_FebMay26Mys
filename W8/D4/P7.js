@@ -2,6 +2,9 @@
 const crypto = require('crypto');
 const bcrypt=require('bcrypt')
 
+mongoose.connect('mongodb://127.0.0.1:27017/datedb1')
+.then(()=>console.log("MongoDB connected"))
+.catch((err)=>console.log(err));
 
 function generateOTP(length=6){
     return crypto.randomInt(100000,999999).toString()
