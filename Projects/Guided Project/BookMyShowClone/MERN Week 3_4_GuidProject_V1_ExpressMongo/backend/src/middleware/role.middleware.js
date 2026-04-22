@@ -1,10 +1,10 @@
-//Role middleware: RBAC
-exports.authorization = (...roles)=>{
-    return (req,res,next)=>{
-        if(!req.user || !roles.includes(req.user.role)){
-            return res.status(403).json({
+// Role middleware: RBAC
+exports.authorize = (...roles)=>{
+    return(req,res,next)=>{
+        if (!req.user || !roles.includes(req.user.role)) {
+             return res.status(403).json({
                 success:false,
-                message:"Access denaied: insufficient permission",
+                message:"Access denied: insufficient permission",
             });
         }
         next();
