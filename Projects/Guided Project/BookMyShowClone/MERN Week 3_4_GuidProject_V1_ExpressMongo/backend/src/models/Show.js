@@ -2,11 +2,11 @@ const mongoose = require("mongoose");
 const seatSchema = new mongoose.Schema({
     seatNumber:{
         type:String,
-        required:true
+        required:true,
     },
     isBooked:{
         type:Boolean,
-        default:true,
+        default:false,
     },
 },{_id:false});
 
@@ -47,14 +47,14 @@ const showSchema = new mongoose.Schema({
     timestamps:true,
 });
 
-//Compound Index:
+//Compound index:
 showSchema.index({movieId:1,date:1});
 
 //Add Validation
 showSchema.pre("save",function(next){
-    if(this.availableSeats>this.totalSeats){
+    if (this.availableSeats>this.totalSeats) {
         return next(new Error("Available seats cannot exceed total seats"));
     }
     next();
 });
-module.exports = mongoose.model("show",showSchema);
+module.exports = mongoose.model("Show",showSchema);
