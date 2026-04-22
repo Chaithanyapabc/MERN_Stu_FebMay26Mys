@@ -1,5 +1,5 @@
-const mongoose=require("mongoose");
-const bcrypt=require("bcrypt");
+const mongoose=require("mongoose")
+const bcrypt=require("bcrypt")
 
 const userSchema=new mongoose.Schema({
     name:{
@@ -12,45 +12,48 @@ const userSchema=new mongoose.Schema({
         required:[true,"Email is required"],
         unique:true,//unique is for email should not repeat
         lowercase:true,//even if we enter in upper case it converts and stores in lower case
-        match:[/^\s+@\s+\.\s+$/,"please use a valid email"],
+        match:[/^\S+@\S+\.\S+$/,"please use a valid email"],
         index:true,
     },
     password:{
         type:String,
         required:[true,"Password is required"],
         minlength:6,
-        select:false,
+        select:false,//hides the password 
     },
     role:{
         type:String,
         enum:["user","admin"],
-        default:"user",
+        default:"user"
     },
     isVerified:{
         type:Boolean,
         default:false,
-    },
+    }
+
 },
 {
-    timestamps:true,
+    timestamps:true
 }
-);
+)
 //Hash password before save
-userSchema.pre("save",async function(){
+userSchema.pre("save",async function () {
     if(!this.isModified("password")){
-        return;
+        return
     }
     try{
-        const saltRounds =10;
-        this.password = await bcrypt.hash(this.password,saltRounds);
+        const saltRounds=10;
+        this.password=await bcrypt.hash(this.password,saltRounds)
     }
     catch(error){
-        throw error; //Handling in Middleware
+        throw error
     }
-});
+    
+})
 
-//Compare password function
-userSchema.methods.caparePassword = async function(enterPassword){
-    return await bcrypt.compare(enterPassword,this.password);
-};
-module.exports = mongoose.model("User",userSchema);
+//compare password function
+userSchema.methods.comparePassword=async function (enteredPassword) {
+    return await bcrypt.compare(enteredPassword,this.password)
+}
+
+module.exports=mongoose.model("User",userSchema)
