@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+//Sub Schema
 const seatSchema = new mongoose.Schema({
     seatNumber:{
         type:String,
