@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-//Sub Schema
+// Sub schema
 const seatSchema = new mongoose.Schema({
     seatNumber:{
         type:String,
@@ -52,10 +52,16 @@ const showSchema = new mongoose.Schema({
 showSchema.index({movieId:1,date:1});
 
 //Add Validation
-showSchema.pre("save",function(next){
-    if (this.availableSeats>this.totalSeats) {
-        return next(new Error("Available seats cannot exceed total seats"));
+// showSchema.pre("save",function(next){
+//     if (this.availableSeats>this.totalSeats) {
+//         return next(new Error("Available seats cannot exceed total seats"));
+//     }
+//     next();
+// });
+// New Add Validation code
+showSchema.pre("save", async function () {
+    if (this.availableSeats > this.totalSeats) {
+        throw new Error("Available seats cannot exceed total seats");
     }
-    next();
 });
 module.exports = mongoose.model("Show",showSchema);
