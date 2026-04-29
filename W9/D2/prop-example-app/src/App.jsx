@@ -5,15 +5,17 @@ import { PropsChildren } from "./components/P3"
 import { PropDrillingDemo } from "./components/P4"
 import { SharedStateParent } from "./components/P5"
 import { CompositionDemo } from "./components/P6"
+import { ObjectsAndArrayProps } from "./components/P7"
 function App() {
   return (
     <>
-      {/*<PropBasics />
+      <PropBasics />
       <PropDestructuring />
       <PropsChildren />
       <PropDrillingDemo />
-      <SharedStateParent />*/}
+      <SharedStateParent />
       <CompositionDemo />
+      <ObjectsAndArrayProps />
     </>
   )
 }
