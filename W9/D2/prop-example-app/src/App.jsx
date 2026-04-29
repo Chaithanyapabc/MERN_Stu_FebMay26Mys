@@ -6,16 +6,18 @@ import { PropDrillingDemo } from "./components/P4"
 import { SharedStateParent } from "./components/P5"
 import { CompositionDemo } from "./components/P6"
 import { ObjectsAndArrayProps } from "./components/P7"
+import { PropsImmutablity } from "./components/P8"
 function App() {
   return (
     <>
-      <PropBasics />
+     {/* <PropBasics />
       <PropDestructuring />
       <PropsChildren />
       <PropDrillingDemo />
       <SharedStateParent />
       <CompositionDemo />
-      <ObjectsAndArrayProps />
+      <ObjectsAndArrayProps />*/}
+      <PropsImmutablity/>
     </>
   )
 }
