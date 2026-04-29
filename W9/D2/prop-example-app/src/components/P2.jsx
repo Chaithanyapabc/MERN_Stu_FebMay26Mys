@@ -1,4 +1,6 @@
 // Props destructuring
+// a syntax of ES6 approach that allows us to unpack properties from
+// prop object directly into its values
 import { React } from "react";
 //Child component
 function UserProfile({username,skill}){
@@ -14,7 +16,7 @@ export function PropDestructuring(){
     return(
         <>
         <h2>Prop Destructuring</h2>
-        <UserProfile username="Chaithanya" skill="React" />
+        <UserProfile username="Rakesh" skill="React" />
         </>
     );
 }
