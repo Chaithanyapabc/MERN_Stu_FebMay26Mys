@@ -182,3 +182,21 @@
     border-right-color: var(--border);
   }
 }
+
+
+/* full screen center */
+.center-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* rectangle box */
+.card {
+  padding: 30px 50px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  text-align: center;
+}
