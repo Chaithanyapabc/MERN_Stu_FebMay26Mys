@@ -23,8 +23,8 @@ function App() {
       <ObjectsAndArrayProps />
       <PropsImmutablity/>
       <PropsState />
-      <FunctionProps />
-      <PropTypesDemo />*/}
+      <FunctionProps />*/}
+      <PropTypesDemo />
       <HOCExample />
     </>
   )
