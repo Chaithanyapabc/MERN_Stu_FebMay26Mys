@@ -16,6 +16,6 @@ const  GreetingWithBorder = WithBorder(Greeting);
 
 export function HOCExample(){
     return(
-        <GreetingWithBorder name="Chaihanya"/>
+        <GreetingWithBorder name="Chaithanya"/>
     )
 }
