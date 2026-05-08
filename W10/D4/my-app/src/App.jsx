@@ -3,10 +3,10 @@ import { BrowserRouter,Routes,Route } from "react-router-dom";
 import { ProtectedRoute } from "./routes/ProtectedRoute";
 import { MainLayout } from "./layouts/MainLayout";
 import { AboutPage } from "./pages/AboutPage";
-import { DashboardPage } from "./pages/DashboardPage";
+import { DashboardPage} from "./pages/DashboardPage";
 import { HomePage } from "./pages/HomePage";
 import { ProductsPage } from "./pages/ProductsPage";
-import { ProductDetailsPage } from "./pages/ProductDetailsPage";
+import { ProductDetailsPage } from "./pages/ProductDetailPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 
 function App() {
