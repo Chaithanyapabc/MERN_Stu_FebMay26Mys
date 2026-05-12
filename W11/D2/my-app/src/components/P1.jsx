@@ -1,3 +1,21 @@
 // Nested Routes
 // a route inside the another route
 // ex:- Dashboard -> Profile / Settings / Reports
+import { Link , Outlet } from "react-router-dom"
+ export function NestedRoutes(){
+    return(
+        <div>
+            <h2>Nested Routes</h2>
+            <nav>
+                <Link to="dashboard">Home</Link> | {' '}
+                <Link to="dashboard/profile">Profile</Link> | {' '}
+                <Link to="dashboard/settings">Settings</Link> | {' '}
+
+                <hr />
+                {/* <Outlet/> is the place whare child routes will render */}
+                {/* Without <Outlet/> , child routes will not appear inside the parent layout */}
+                <Outlet />
+            </nav>
+        </div>
+    )
+ }
