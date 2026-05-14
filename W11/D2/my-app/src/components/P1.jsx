@@ -8,8 +8,8 @@ import { Link , Outlet } from "react-router-dom"
             <h2>Nested Routes</h2>
             <nav>
                 <Link to="dashboard">Home</Link> | {' '}
-                <Link to="dashboard/profile">Profile</Link> | {' '}
-                <Link to="dashboard/settings">Settings</Link> | {' '}
+                <Link to="/dashboard/profile">Profile</Link> | {' '}
+                <Link to="/dashboard/settings">Settings</Link> | {' '}
 
                 <hr />
                 {/* <Outlet/> is the place whare child routes will render */}

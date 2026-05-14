@@ -1,122 +1,106 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
+import {BrowserRouter, Routes , Route , Link} from "react-router-dom"
 import './App.css'
+import {NestedRoutes} from "./components/P1"
+import {DynamicParamsUseParams} from "./components/P2"
+import {MultipleDynamicParams} from "./components/P3"
+import {OperationalParameters} from "./components/P4"
+import {NestedDynamicRoutes} from "./components/P5"
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
-
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+function DashboardHome(){
+  return(
+    <div>
+      <h3>Dashboard Home</h3>
+      <p>Default Dashboard Page</p>
+    </div>
   )
 }
 
+function DashboardProfile(){
+  return(
+    <div>
+      <h3>Dashboard Profile</h3>
+      <p>Profile Page inside Dashboard</p>
+    </div>
+  )
+}
+
+function DashboardSettings(){
+  return(
+    <div>
+      <h3>Dashboard Settings</h3>
+      <p>Settings Page Inside Dashboard</p>
+    </div>
+  )
+}
+
+
+function Home(){
+  return(
+    <div>
+    <h1>React Router Concepts</h1>
+    <ul>
+      <li>NestedRoutes</li>
+      <li>DynamicParamsUseParams</li>
+      <li>MultipleDynamicParams</li>
+      <li>OptionalParameters</li>
+      <li>NestedDynamicRoutes</li>
+    </ul>
+    <nav style={styles.nav}>
+      <Link to="/dashboard">Nested Routes</Link>
+      <Link to="/products/101">Dynamic Params</Link>
+      <Link to="/users/101/orders/5001">Multiple parameters</Link>
+      <Link to="/profile">Optional Params</Link>
+      <Link to="/profile/chaithanya">Optional Params with value</Link>
+      <Link to="/courses/reactJS">Nested Dynamic routes</Link>
+    </nav>
+    </div>
+  )
+}
+function App() {
+  return(
+    <BrowserRouter>
+    <Routes>
+      <Route path="/" element = {<Home/>}/>
+
+      {/* Nested Routes */}
+      <Route 
+        path="/dashboard" 
+        element ={<NestedRoutes/>}>
+        {/* index route */}
+        <Route index element={<DashboardHome/>} />
+        <Route path="profile" element={<DashboardProfile/>} />
+        <Route path="settings" element={<DashboardSettings/>} />
+      </Route>
+
+      {/* Dynamic Params */}
+      <Route path="/products/:id" element={<DynamicParamsUseParams/>} />
+
+      {/* Multiple Dynamic Params */}
+      <Route path="/users/:userId/orders/:orderId" element={<MultipleDynamicParams/>} />
+
+      {/* Optional Parameters */}
+      <Route path="/profile" element={<OperationalParameters/>} />
+
+      {/* Optional Parameters with value*/}
+      <Route path="/profile/:username" element={<OperationalParameters/>} />
+
+      {/* Nested Dynamic Routes*/}
+      <Route path="/courses/:courseId" element={<NestedDynamicRoutes/>} />
+
+    </Routes>
+    </BrowserRouter>
+  )
+}
+
+const styles={
+  nav:{
+    display:"Flex",
+    flexWrap:"wrap",
+    gap:"10px",
+    marginTop:"20px"
+  }
+}
 export default App
+
+// npm install react-router-dom
