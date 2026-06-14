@@ -1,16 +1,27 @@
 import "./App.css";
-import AuthStatus from "./components/AuthStatus";
-import MovieLoader from "./components/MovieLoader";
-import MovieResults from "./components/MovieResults";
 
-function App() {
-  return (
-    <>
-      <AuthStatus />
-      <MovieLoader />
-      <MovieResults />
-    </>
-  );
+import MovieExplorer from "./components/MovieExplorer";
+import ErrorBoundary from "./components/ErrorBoundary";
+
+export default function App(){
+  return(
+    <div>
+      <header>
+          <ErrorBoundary>
+              <MovieExplorer />
+          </ErrorBoundary>
+      </header>
+    </div>
+  )
 }
-
-export default App;
+const styles = {
+  container:{
+    maxWidth: "900px",
+    margin:"0 auto",
+    padding: "20px",
+  },
+  button: {
+    padding: "8px 12px",
+    marginTop:"8px",
+  },
+};
